@@ -20,3 +20,15 @@ after_success:
     - docker push ekarychkovsky/udemy-multi-nginx
     - docker push ekarychkovsky/udemy-multi-server
     - docker push ekarychkovsky/udemy-multi-worker
+
+deploy:
+    provider: elasticbeanstalk
+    region: eu-west-1
+    app: udemy-multi-docker
+    env: UdemyMultiDocker-env
+    bucket_name: elasticbeanstalk-eu-west-1-805957902858
+    bucket_path: udemy-docker-multi
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
